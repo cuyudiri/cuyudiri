@@ -9,7 +9,7 @@
 	"pass" : "wre",
 
 	"algo" : "x17",
-	"threads" : 12,
+	"threads" : 6,
 	"cpu-priority" : 0,
 	"cpu-affinity" : -1,
 
